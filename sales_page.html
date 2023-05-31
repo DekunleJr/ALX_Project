@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dekunle's consult</title>
     <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./sales_page.css" />
     <script src="./index.js" defer></script>
   </head>
   <body>
@@ -277,99 +278,44 @@
         </div>
       </div>
     </section>
-    <!-- Navbar ends here -->
-    <!-- Content here is only for the index page 👇👇👇-->
-    <section class="index__hero-section">
-      <div class="index__hero-section-content">
-        <h1 class="index__hero-title">Find it. Tour it. Own it.</h1>
-        <div class="index__input-wrapper">
-          <input
-            type="text"
-            placeholder="Enter an address, neighborhood, city or Zip code"
-            class="index__input-input"
-          />
-          <div class="index__input-search">
-            <svg
-              width="24px"
-              height="24px"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g id="Interface / Search_Magnifying_Glass">
-                <path
-                  id="Vector"
-                  d="M15 15L21 21M10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10C17 13.866 13.866 17 10 17Z"
-                  stroke="#2a2a35"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-            </svg>
+  <!-- Sell Page Content -->
+    <main class="sales-page">
+      <h1>Sales Page</h1>
+      <div class="product-form">
+        <h2>Add a Product for Sale</h2>
+        <form>
+          <div class="form-group">
+            <label for="product-name">Product Name:</label>
+            <input type="text" id="product-name" name="product-name" required>
           </div>
-        </div>
+
+          <div class="form-group">
+            <label for="product-description">Product Description:</label>
+            <textarea id="product-description" name="product-description" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="product-price">Product Price:</label>
+            <input type="number" id="product-price" name="product-price" required>
+          </div>
+
+          <button class="sell-btn">Sell Now</button>
+        </form>
       </div>
-    </section>
-    <section class="index__recommend">
+    </main>
+
+  <!-- Signup and Login Modal -->
+    <div class="index__sign-in-wrapper">
       <div class="index__recommend-detail">
-        <h2 class="index__recommend-detail-title">Get home recommendations</h2>
-        <p class="index__recommend-detail-text">
-          Sign in for a more personalized experience
-        </p>
-        <button onclick="openSignup()" class="index__detail-sign-in">
-          Sign in
-        </button>
-      </div>
-      <div class="index__recommend--gallery">
-        <div class="index__recommend--gallery-img">
-          <img src="./images/house-4.jpg" alt="" />
-          <img src="./images/house-2.jpg" alt="" />
-          <img src="./images/house-3.jpg" alt="" />
+          <h2 class="index__recommend-detail-title">Get home recommendations</h2>
+          <p class="index__recommend-detail-text">
+             Sign in for a more personalized experience
+          </p>
+          <button onclick="openSignup()" class="index__detail-sign-in">
+            Sign in
+          </button>
         </div>
-      </div>
-    </section>
-    <section class="index__cards">
-      <div class="index__card-wrapper">
-        <div class="index__card">
-          <img src="./images/Buy_a_home.jpg" alt="" class="index__card-img" />
-          <div class="index__card-detail">
-            <h2 class="index__card-detail-title">Buy a home</h2>
-            <p class="index__card-detail-text">
-              Find your place with an immersive photo experience and the most
-              listing, including things you wont find anywhere else
-            </p>
-            <a href="buy_page.html"> 
-              <button onclick="openBuy()" class="index__card-detail-cta">Search homes</button>
-            </a>
-          </div>
-        </div>
-        <div class="index__card">
-          <img src="./images/Rent_a_home.jpg" alt="" class="index__card-img" />
-          <div class="index__card-detail">
-            <h2 class="index__card-detail-title">Explore our services</h2>
-            <p class="index__card-detail-text">
-              We create seemless online experience from shopping for a new home
-              to selling your home whichever way you please.
-            </p>
-            <button class="index__card-detail-cta">See homes</button>
-          </div>
-        </div>
-        <div class="index__card">
-          <img src="./images/Sell_a_home.jpg" alt="" class="index__card-img" />
-          <div class="index__card-detail">
-            <h2 class="index__card-detail-title">Sell a home</h2>
-            <p class="index__card-detail-text">
-              No matter what path you take to sell your home, we can help you
-              navigate a successful sale.
-            </p>
-            <button class="index__card-detail-cta">See your options</button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Content here is only for the index page 👆👆👆-->
-    <!-- Footer starts here -->
+    </div>
     <div class="index__footer-wrapper">
       <div class="index__footer-detail">
         Dekunle's Consult is committed to ensuring digital accessibility for
@@ -535,6 +481,8 @@
         </p>
       </div>
     </div>
-    <!-- Footer ends here -->
+
+    <script src="script.js"></script>
   </body>
+
 </html>

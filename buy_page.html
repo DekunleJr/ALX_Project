@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Page</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./buy_page.css">
+    <script src="./index.js" defer></script>
+    <script src="./buy_page.js" defer></script>
+  </head>
+
+<body>
+  <!-- Navigation Bar -->
+  <div class="index__header-wrapper">
+    <header class="index__header">
+      <div class="index__header-left">
+        <a class="index__header-link" href="buy_page.html">Buy</a>
+        <a class="index__header-link" href="./">Sell</a>
+        <div class="ham">
+          <svg
+            width="28px"
+            height="28px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 18L20 18"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M4 12L20 12"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+            <path
+              d="M4 6L20 6"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+      </div>
+      <a href="index.html" class="index__logo"><img src="./images/logo.png" /></a>
+      <div class="index__header-right">
+        <a class="index__header-link" href="./">Gallery</a>
+        <span class="index__header-link index__sign-up" onclick="openSignup()"
+          >Sign in</span
+        >
+      </div>
+      <div class="index__mobi-navbar">
+        <div class="index__mobi-navbar__head">
+          <div class="index__mobi-navbar__head-close">
+            <svg
+              width="28px"
+              height="28px"
+              viewBox="0 0 1024 1024"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#feb63e"
+                d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"
+              />
+            </svg>
+          </div>
+          <div class="index__mobi-navbar__head-logo">
+            <img src="./images/logo.png" />
+          </div>
+          <div></div>
+        </div>
+        <a class="index__header-link--mobi" href="./buy_page.html">Buy</a>
+        <a class="index__header-link--mobi" href="./">Sell</a>
+        <a class="index__header-link--mobi" href="./">Gallery</a>
+      </div>
+    </header>
+  </div>
+  <section class="index__sign-in-wrapper">
+    <div class="index__sign-in">
+      <div onclick="closeSignup()" class="index__sign-in-close">
+        <svg
+          width="20px"
+          height="20px"
+          viewBox="0 0 1024 1024"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill="#000"
+            d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"
+          />
+        </svg>
+      </div>
+      <h2 class="index__sign-in-title">Welcome to Dekunle's Consult</h2>
+      <div class="index__sign-in-head">
+        <div
+          class="index__sign-in-head-item index__active"
+          id="signin-option"
+          onclick="openSigninTab()"
+        >
+          Sign in
+        </div>
+        <div
+          class="index__sign-in-head-item"
+          onclick="openSignupTab()"
+          id="signup-option"
+        >
+          New Account
+        </div>
+      </div>
+      <p class="index__success-text">Sign in successful</p>
+      <div class="index__sign-in-body d-block">
+        <p class="index__error-text">invalid email or password</p>
+        <div class="index__sign-in-body-input-container">
+          <label for="sign-in-email" class="index__sign-in-label"
+            >Email</label
+          >
+          <input
+            type="email"
+            name="email"
+            id="sign-in-email"
+            class="index__sign-in-input"
+          />
+        </div>
+        <div class="index__sign-in-body-input-container">
+          <label for="sign-in-password" class="index__sign-in-label"
+            >Password</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="sign-in-password"
+            class="index__sign-in-input"
+          />
+        </div>
+        <button onclick="handleSignin()" class="index__sign-in-btn">
+          Sign in
+        </button>
+        <a href="./" class="index__sign-in-forgot-password"
+          >Forgot your password?</a
+        >
+      </div>
+      <div class="index__sign-up-body">
+        <div class="index__sign-up-body-input-container">
+          <label for="sign-up-email" class="index__sign-up-label"
+            >Email</label
+          >
+          <input
+            type="email"
+            name="email"
+            id="sign-up-email"
+            class="index__sign-up-input"
+          />
+        </div>
+        <div class="index__sign-up-body-input-container">
+          <label for="sign-up-password" class="index__sign-up-label"
+            >Password</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="sign-up-password"
+            class="index__sign-up-input"
+          />
+        </div>
+        <button
+          onclick="handleSignup()"
+          class="index__sign-up-btn index__sign-up-btn--disabled"
+        >
+          Submit
+        </button>
+        <p href="./" class="index__sign-up-terms">
+          By submiting, I accept Dekunle's consult <a href="">terms of use</a>
+        </p>
+      </div>
+
+      <div class="index__sign-in-other-options">
+        <p class="index__sign-in-other-options-texts">Or connect with:</p>
+        <div class="index__sign-in-other-options-btn">
+          <div class="index__sign-in-other-options-icon">
+            <svg
+              width="32px"
+              height="32px"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="16"
+                cy="16"
+                r="14"
+                fill="url(#paint0_linear_87_7208)"
+              />
+              <path
+                d="M21.2137 20.2816L21.8356 16.3301H17.9452V13.767C17.9452 12.6857 18.4877 11.6311 20.2302 11.6311H22V8.26699C22 8.26699 20.3945 8 18.8603 8C15.6548 8 13.5617 9.89294 13.5617 13.3184V16.3301H10V20.2816H13.5617V29.8345C14.2767 29.944 15.0082 30 15.7534 30C16.4986 30 17.2302 29.944 17.9452 29.8345V20.2816H21.2137Z"
+                fill="white"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_87_7208"
+                  x1="16"
+                  y1="2"
+                  x2="16"
+                  y2="29.917"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#18ACFE" />
+                  <stop offset="1" stop-color="#0163E0" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="index__sign-in-other-options-text">
+            Continue with Facebook
+          </div>
+          <div class="index__sign-in-other-options-space"></div>
+        </div>
+        <div class="index__sign-in-other-options-btn">
+          <div class="index__sign-in-other-options-icon">
+            <svg
+              width="24px"
+              height="24px"
+              viewBox="-0.5 0 48 48"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <title>Google-color</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g
+                id="Icons"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+              >
+                <g
+                  id="Color-"
+                  transform="translate(-401.000000, -860.000000)"
+                >
+                  <g
+                    id="Google"
+                    transform="translate(401.000000, 860.000000)"
+                  >
+                    <path
+                      d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24"
+                      id="Fill-1"
+                      fill="#FBBC05"
+                    ></path>
+                    <path
+                      d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333"
+                      id="Fill-2"
+                      fill="#EB4335"
+                    ></path>
+                    <path
+                      d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667"
+                      id="Fill-3"
+                      fill="#34A853"
+                    ></path>
+                    <path
+                      d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24"
+                      id="Fill-4"
+                      fill="#4285F4"
+                    ></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="index__sign-in-other-options-text">
+            Continue with Google
+          </div>
+          <div class="index__sign-in-other-options-space"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Buy Page Content -->
+  <main class="buy-page">
+    <h1>Buy Page</h1>
+    <div class="product-list">
+      <!-- Product 1 -->
+      <div class="product">
+        <img src="product1.jpg" alt="Product 1">
+        <h2>Product 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product">
+        <img src="product2.jpg" alt="Product 2">
+        <h2>Product 2</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product">
+        <img src="product3.jpg" alt="Product 3">
+        <h2>Product 3</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button class="buy-btn">Buy Now</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Signup and Login Modal -->
+  <div class="index__sign-in-wrapper">
+    <!-- Modal Content -->
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
