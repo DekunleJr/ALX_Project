@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dekunle's consult</title>
     <link rel="stylesheet" href="./index.css" />
-    <link rel="stylesheet" href="./sales_page.css" />
+    <link rel="stylesheet" href="./gallery.css" />
     <script src="./index.js" defer></script>
   </head>
   <body>
@@ -72,9 +72,9 @@
             </div>
             <div></div>
           </div>
-          <a class="index__header-link--mobi" href="./buy_page.html">Buy</a>
-          <a class="index__header-link--mobi" href="./">Sell</a>
-          <a class="index__header-link--mobi" href="./">Gallery</a>
+          <a class="index__header-link--mobi" href="buy_page.css">Buy</a>
+          <a class="index__header-link--mobi" href="sales_page.html">Sell</a>
+          <a class="index__header-link--mobi" href="gallery.html">Gallery</a>
         </div>
       </header>
     </div>
@@ -278,44 +278,81 @@
         </div>
       </div>
     </section>
-  <!-- Sell Page Content -->
-    <main class="sales-page">
-      <h1>Sales Page</h1>
-      <div class="product-form">
-        <h2>Add a Product for Sale</h2>
-        <form>
-          <div class="form-group">
-            <label for="product-name">Product Name:</label>
-            <input type="text" id="product-name" name="product-name" required>
-          </div>
-
-          <div class="form-group">
-            <label for="product-description">Product Description:</label>
-            <textarea id="product-description" name="product-description" required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="product-price">Product Price:</label>
-            <input type="number" id="product-price" name="product-price" required>
-          </div>
-
-          <button class="sell-btn">Sell Now</button>
-        </form>
+    <!-- Navbar ends here -->
+    <!-- Content here is only for the index page 👇👇👇-->
+    <div class="gallery__dummy"></div>
+    <main class="gallery__wrapper">
+      <div class="gallery__img-container">
+        <img
+          src="images/etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.jpg"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="images/francesca-tosolini-tHkJAMcO3QE-unsplash.jpg"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="images/francesca-tosolini-XcVm8mn7NUM-unsplash.jpg"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img src="images/house-1.jpg" alt="" class="gallery__img" />
+      </div>
+      <div class="gallery__img-container">
+        <img src="images/house-2.jpg" alt="" class="gallery__img" />
+      </div>
+      <div class="gallery__img-container">
+        <img src="images/house-3.jpg" alt="" class="gallery__img" />
+      </div>
+      <div class="gallery__img-container">
+        <img src="images/house-4.jpg" alt="" class="gallery__img" />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="images/jason-briscoe-UV81E0oXXWQ-unsplash.jpg"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="images/jason-dent-w3eFhqXjkZE-unsplash.jpg"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="images/joel-filipe-RFDP7_80v5A-unsplash.jpg"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="images/maria-ziegler-jJnZg7vBfMs-unsplash.jpg"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="images/premium_photo-1675324517011-24d2c741c22f.png"
+          alt=""
+          class="gallery__img"
+        />
       </div>
     </main>
-
-  <!-- Signup and Login Modal -->
-    <div class="index__sign-in-wrapper">
-      <div class="index__recommend-detail">
-          <h2 class="index__recommend-detail-title">Get home recommendations</h2>
-          <p class="index__recommend-detail-text">
-             Sign in for a more personalized experience
-          </p>
-          <button onclick="openSignup()" class="index__detail-sign-in">
-            Sign in
-          </button>
-        </div>
-    </div>
+    <!-- Content here is only for the index page 👆👆👆-->
+    <!-- Footer starts here -->
     <div class="index__footer-wrapper">
       <div class="index__footer-detail">
         Dekunle's Consult is committed to ensuring digital accessibility for
@@ -481,8 +518,6 @@
         </p>
       </div>
     </div>
-
-    <script src="script.js"></script>
+    <!-- Footer ends here -->
   </body>
-
 </html>
