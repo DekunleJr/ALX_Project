@@ -20,6 +20,7 @@ const signupTab = document.querySelector('.index__sign-up-body');
 const signinOption = document.querySelector('#signin-option');
 const signupOption = document.querySelector('#signup-option');
 const allInput = document.querySelectorAll('input');
+const signinBtn = document.querySelector('.index__sign-up');
 const signupBtn = document.querySelector('.index__sign-up-btn');
 const signinErrortext = document.querySelector('.index__error-text');
 const signinSuccesstext = document.querySelector('.index__success-text');
@@ -115,5 +116,7 @@ const handleSignin = () => {
   clearAllInput();
   setTimeout(() => {
     closeSignup();
+    signinBtn.style.display = 'none';
+    console.log(signinBtn);
   }, 3000);
 };
