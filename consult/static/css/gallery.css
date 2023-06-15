@@ -1,0 +1,32 @@
+.gallery__dummy {
+  height: 87px;
+}
+
+.gallery__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 16px;
+  padding: 0 32px;
+  max-width: 1276px;
+  margin: auto;
+  box-sizing: border-box;
+}
+.gallery__img-container,
+.gallery__img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 600px) {
+  .gallery__wrapper {
+    grid-template-columns: 1fr;
+    padding: 0 16px;
+    gap: 8px;
+  }
+  .gallery__img {
+    border-radius: 4px;
+  }
+}

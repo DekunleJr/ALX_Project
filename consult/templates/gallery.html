@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dekunle's consult</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}" />
+    <script src="{{ url_for('static', filename='js/index.js') }}" defer></script>
+  </head>
+  <body>
+    <!-- Navbar starts here -->
+    <div class="index__header-wrapper">
+      <header class="index__header">
+        <div class="index__header-left">
+          <a class="index__header-link" href="{{ url_for('buy_page') }}">Buy</a>
+          <a class="index__header-link" href="{{ url_for('sales_page') }}">Sell</a>
+          <div class="ham">
+            <svg
+              width="28px"
+              height="28px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4 18L20 18"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M4 12L20 12"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <path
+                d="M4 6L20 6"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+        </div>
+        <a href="{{ url_for('home') }}" class="index__logo"><img src="{{ url_for('static', filename='/images/logo.png') }}" /></a>
+        <div class="index__header-right">
+          <a class="index__header-link" href="/gallery">Gallery</a>
+          {% if not current_user.is_authenticated %}
+          <span class="index__header-link index__sign-up" onclick="openSignup()"
+            >Sign in</span
+          >
+          {% endif %}
+        </div>
+        <div class="index__mobi-navbar">
+          <div class="index__mobi-navbar__head">
+            <div class="index__mobi-navbar__head-close">
+              <svg
+                width="28px"
+                height="28px"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="#feb63e"
+                  d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"
+                />
+              </svg>
+            </div>
+            <div class="index__mobi-navbar__head-logo">
+              <img src="{{ url_for('static', filename='/images/logo.png') }}" />
+            </div>
+            <div></div>
+          </div>
+          <a class="index__header-link--mobi" href="/buy">Buy</a>
+          <a class="index__header-link--mobi" href="/sales">Sell</a>
+          <a class="index__header-link--mobi" href="/gallery">Gallery</a>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      
+      </header>
+    </div>
+    <section class="index__sign-in-wrapper">
+      <div class="index__sign-in">
+        <div onclick="closeSignup()" class="index__sign-in-close">
+          <svg
+            width="20px"
+            height="20px"
+            viewBox="0 0 1024 1024"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="#000"
+              d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"
+            />
+          </svg>
+        </div>
+        <h2 class="index__sign-in-title">Welcome to Dekunle's Consult</h2>
+        <div class="index__sign-in-head">
+          <div
+            class="index__sign-in-head-item index__active"
+            id="signin-option"
+            onclick="openSigninTab()"
+          >
+          
+            Sign in
+          </div>
+          <div
+            class="index__sign-in-head-item"
+            onclick="openSignupTab()"
+            id="signup-option"
+          >
+            New Account
+          </div>
+        </div>
+        <p class="index__success-text">Sign in successful</p>
+        <div class="index__sign-in-body d-block">
+          <p class="index__error-text">invalid email or password</p>
+          <form method="POST" action="/login">
+          <div class="index__sign-in-body-input-container">
+            <label for="sign-in-email" class="index__sign-in-label"
+              >Email</label
+            >
+            <input
+              type="email"
+              name="email"
+              id="sign-in-email"
+              class="index__sign-in-input"
+            />
+          </div>
+          <div class="index__sign-in-body-input-container">
+            <label for="sign-in-password" class="index__sign-in-label"
+              >Password</label
+            >
+            <input
+              type="password"
+              name="password"
+              id="sign-in-password"
+              class="index__sign-in-input"
+            />
+          </div>
+
+          <input type="submit" value='Sign in' class='index__sign-up-btn index__sign-up-btn'>
+          <p href="./" class="index__sign-up-terms">
+          <a href="./" class="index__sign-in-forgot-password"
+            >Forgot your password?</a
+          >
+          </form>
+        </div>
+        <form method="POST" action="/">
+        <div class="index__sign-up-body">
+          <div class="index__sign-up-body-input-container">
+            {{ form.email.label(class='index__sign-up-label') }}
+            {{ form.email(class="index__sign-up-input", id="sign-up-email") }}
+            {% if form.email.errors %}
+              {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+              {% endif %}
+          </div>
+          <div class="index__sign-up-body-input-container">
+            {{ form.password.label(class='index__sign-up-label') }}
+            {{ form.password(id="sign-up-password", class="index__sign-up-input") }}
+            {% if form.password.errors %}
+            {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+            {% endif %}
+
+          {{ form.submit(class='index__sign-up-btn index__sign-up-btn') }}
+
+          <p href="./" class="index__sign-up-terms">
+            By submiting, I accept Dekunle's consult <a href="">terms of use</a>
+          </p>
+        </div>
+        </form>
+
+        <div class="index__sign-in-other-options">
+          <p class="index__sign-in-other-options-texts">Or connect with:</p>
+          <div class="index__sign-in-other-options-btn">
+            <div class="index__sign-in-other-options-icon">
+              <svg
+                width="32px"
+                height="32px"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="16"
+                  cy="16"
+                  r="14"
+                  fill="url(#paint0_linear_87_7208)"
+                />
+                <path
+                  d="M21.2137 20.2816L21.8356 16.3301H17.9452V13.767C17.9452 12.6857 18.4877 11.6311 20.2302 11.6311H22V8.26699C22 8.26699 20.3945 8 18.8603 8C15.6548 8 13.5617 9.89294 13.5617 13.3184V16.3301H10V20.2816H13.5617V29.8345C14.2767 29.944 15.0082 30 15.7534 30C16.4986 30 17.2302 29.944 17.9452 29.8345V20.2816H21.2137Z"
+                  fill="white"
+                />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_87_7208"
+                    x1="16"
+                    y1="2"
+                    x2="16"
+                    y2="29.917"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop stop-color="#18ACFE" />
+                    <stop offset="1" stop-color="#0163E0" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="index__sign-in-other-options-text">
+              Continue with Facebook
+            </div>
+            <div class="index__sign-in-other-options-space"></div>
+          </div>
+          <div class="index__sign-in-other-options-btn">
+            <div class="index__sign-in-other-options-icon">
+              <svg
+                width="24px"
+                height="24px"
+                viewBox="-0.5 0 48 48"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <title>Google-color</title>
+                <desc>Created with Sketch.</desc>
+                <defs></defs>
+                <g
+                  id="Icons"
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <g
+                    id="Color-"
+                    transform="translate(-401.000000, -860.000000)"
+                  >
+                    <g
+                      id="Google"
+                      transform="translate(401.000000, 860.000000)"
+                    >
+                      <path
+                        d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24"
+                        id="Fill-1"
+                        fill="#FBBC05"
+                      ></path>
+                      <path
+                        d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333"
+                        id="Fill-2"
+                        fill="#EB4335"
+                      ></path>
+                      <path
+                        d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667"
+                        id="Fill-3"
+                        fill="#34A853"
+                      ></path>
+                      <path
+                        d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24"
+                        id="Fill-4"
+                        fill="#4285F4"
+                      ></path>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="index__sign-in-other-options-text">
+              Continue with Google
+            </div>
+            <div class="index__sign-in-other-options-space"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Navbar ends here -->
+    <!-- Content here is only for the index page 👇👇👇-->
+    <div class="gallery__dummy"></div>
+    <main class="gallery__wrapper">
+      <div class="gallery__img-container">
+        <img
+          src="{{ url_for('static', filename='images/etienne-beauregard-riverin-B0aCvAVSX8E-unsplash.jpg') }}"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="{{ url_for('static', filename='images/francesca-tosolini-tHkJAMcO3QE-unsplash.jpg') }}"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="{{ url_for('static', filename='images/francesca-tosolini-XcVm8mn7NUM-unsplash.jpg') }}"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img src="{{ url_for('static', filename='images/house-1.jpg') }}" alt="" class="gallery__img" />
+      </div>
+      <div class="gallery__img-container">
+        <img src="{{ url_for('static', filename='images/house-2.jpg') }}" alt="" class="gallery__img" />
+      </div>
+      <div class="gallery__img-container">
+        <img src="{{ url_for('static', filename='images/house-3.jpg') }}" alt="" class="gallery__img" />
+      </div>
+      <div class="gallery__img-container">
+        <img src="{{ url_for('static', filename='images/house-4.jpg') }}" alt="" class="gallery__img" />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="{{ url_for('static', filename='images/jason-briscoe-UV81E0oXXWQ-unsplash.jpg') }}"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="{{ url_for('static', filename='images/jason-dent-w3eFhqXjkZE-unsplash.jpg') }}"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="{{ url_for('static', filename='images/joel-filipe-RFDP7_80v5A-unsplash.jpg') }}"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="{{ url_for('static', filename='images/maria-ziegler-jJnZg7vBfMs-unsplash.jpg') }}"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+      <div class="gallery__img-container">
+        <img
+          src="{{ url_for('static', filename='images/premium_photo-1675324517011-24d2c741c22f.png') }}"
+          alt=""
+          class="gallery__img"
+        />
+      </div>
+    </main>
+    <!-- Content here is only for the index page 👆👆👆-->
+    <!-- Footer starts here -->
+    <div class="index__footer-wrapper">
+      <div class="index__footer-detail">
+        Dekunle\'s Consult is committed to ensuring digital accessibility for
+        individuals. We are continuously working to improve the accessibility of
+        our web experience for everyone, and we welcome feedback and
+        accommodation requests. If you wish to seek an accommodation, please
+        <a href="/gallery">checkout our gallery</a>
+      </div>
+      <div class="index__footer-socials">
+        <a href="/">
+          <img class="index__footer-socials-logo" src="{{ url_for('static', filename='images/logo.png') }}"
+        /></a>
+        <div class="index__footer-socials-icons">
+          <p>Follow us:</p>
+          <a href="/">
+            <svg
+              width="32px"
+              height="32px"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="16" cy="16" r="14" fill="#006aff"></circle>
+              <path
+                d="M21.2137 20.2816L21.8356 16.3301H17.9452V13.767C17.9452 12.6857 18.4877 11.6311 20.2302 11.6311H22V8.26699C22 8.26699 20.3945 8 18.8603 8C15.6548 8 13.5617 9.89294 13.5617 13.3184V16.3301H10V20.2816H13.5617V29.8345C14.2767 29.944 15.0082 30 15.7534 30C16.4986 30 17.2302 29.944 17.9452 29.8345V20.2816H21.2137Z"
+                fill="white"
+              ></path>
+              <defs>
+                <linearGradient
+                  id="paint0_linear_87_7208"
+                  x1="16"
+                  y1="2"
+                  x2="16"
+                  y2="29.917"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="#18ACFE"></stop>
+                  <stop offset="1" stop-color="#0163E0"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+          </a>
+          <a href="">
+            <svg
+              width="32px"
+              height="32px"
+              viewBox="0 0 20 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <title>instagram [#167]</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g
+                id="Page-1"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+              >
+                <g
+                  id="Dribbble-Light-Preview"
+                  transform="translate(-340.000000, -7439.000000)"
+                  fill="#006aff"
+                >
+                  <g id="icons" transform="translate(56.000000, 160.000000)">
+                    <path
+                      d="M289.869652,7279.12273 C288.241769,7279.19618 286.830805,7279.5942 285.691486,7280.72871 C284.548187,7281.86918 284.155147,7283.28558 284.081514,7284.89653 C284.035742,7285.90201 283.768077,7293.49818 284.544207,7295.49028 C285.067597,7296.83422 286.098457,7297.86749 287.454694,7298.39256 C288.087538,7298.63872 288.809936,7298.80547 289.869652,7298.85411 C298.730467,7299.25511 302.015089,7299.03674 303.400182,7295.49028 C303.645956,7294.859 303.815113,7294.1374 303.86188,7293.08031 C304.26686,7284.19677 303.796207,7282.27117 302.251908,7280.72871 C301.027016,7279.50685 299.5862,7278.67508 289.869652,7279.12273 M289.951245,7297.06748 C288.981083,7297.0238 288.454707,7296.86201 288.103459,7296.72603 C287.219865,7296.3826 286.556174,7295.72155 286.214876,7294.84312 C285.623823,7293.32944 285.819846,7286.14023 285.872583,7284.97693 C285.924325,7283.83745 286.155174,7282.79624 286.959165,7281.99226 C287.954203,7280.99968 289.239792,7280.51332 297.993144,7280.90837 C299.135448,7280.95998 300.179243,7281.19026 300.985224,7281.99226 C301.980262,7282.98483 302.473801,7284.28014 302.071806,7292.99991 C302.028024,7293.96767 301.865833,7294.49274 301.729513,7294.84312 C300.829003,7297.15085 298.757333,7297.47145 289.951245,7297.06748 M298.089663,7283.68956 C298.089663,7284.34665 298.623998,7284.88065 299.283709,7284.88065 C299.943419,7284.88065 300.47875,7284.34665 300.47875,7283.68956 C300.47875,7283.03248 299.943419,7282.49847 299.283709,7282.49847 C298.623998,7282.49847 298.089663,7283.03248 298.089663,7283.68956 M288.862673,7288.98792 C288.862673,7291.80286 291.150266,7294.08479 293.972194,7294.08479 C296.794123,7294.08479 299.081716,7291.80286 299.081716,7288.98792 C299.081716,7286.17298 296.794123,7283.89205 293.972194,7283.89205 C291.150266,7283.89205 288.862673,7286.17298 288.862673,7288.98792 M290.655732,7288.98792 C290.655732,7287.16159 292.140329,7285.67967 293.972194,7285.67967 C295.80406,7285.67967 297.288657,7287.16159 297.288657,7288.98792 C297.288657,7290.81525 295.80406,7292.29716 293.972194,7292.29716 C292.140329,7292.29716 290.655732,7290.81525 290.655732,7288.98792"
+                      id="instagram-[#167]"
+                    ></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </a>
+          <a href="">
+            <svg
+              width="32px"
+              height="32px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16.8218 5.1344C16.0887 4.29394 15.648 3.19805 15.648 2H14.7293C14.9659 3.3095 15.7454 4.43326 16.8218 5.1344Z"
+                fill="#006aff"
+              />
+              <path
+                d="M8.3218 11.9048C6.73038 11.9048 5.43591 13.2004 5.43591 14.7931C5.43591 15.903 6.06691 16.8688 6.98556 17.3517C6.64223 16.8781 6.43808 16.2977 6.43808 15.6661C6.43808 14.0734 7.73255 12.7778 9.324 12.7778C9.62093 12.7778 9.90856 12.8288 10.1777 12.9124V9.40192C9.89927 9.36473 9.61628 9.34149 9.324 9.34149C9.27294 9.34149 9.22654 9.34614 9.1755 9.34614V12.0394C8.90176 11.9558 8.61873 11.9048 8.3218 11.9048Z"
+                fill="#006aff"
+              />
+              <path
+                d="M19.4245 6.67608V9.34614C17.6429 9.34614 15.9912 8.77501 14.6456 7.80911V14.7977C14.6456 18.2851 11.8108 21.127 8.32172 21.127C6.97621 21.127 5.7235 20.6998 4.69812 19.98C5.8534 21.2198 7.50049 22 9.32392 22C12.8083 22 15.6478 19.1627 15.6478 15.6707V8.68211C16.9933 9.64801 18.645 10.2191 20.4267 10.2191V6.78293C20.0787 6.78293 19.7446 6.74574 19.4245 6.67608Z"
+                fill="#006aff"
+              />
+              <path
+                d="M14.6456 14.7977V7.80911C15.9912 8.77501 17.6429 9.34614 19.4245 9.34614V6.67608C18.3945 6.45788 17.4899 5.90063 16.8218 5.1344C15.7454 4.43326 14.9704 3.3095 14.7245 2H12.2098L12.2051 15.7775C12.1495 17.3192 10.8782 18.5591 9.32393 18.5591C8.35884 18.5591 7.50977 18.0808 6.98085 17.3564C6.06219 16.8688 5.4312 15.9076 5.4312 14.7977C5.4312 13.205 6.72567 11.9094 8.31708 11.9094C8.61402 11.9094 8.90168 11.9605 9.17079 12.0441V9.35079C5.75598 9.42509 3 12.2298 3 15.6707C3 17.3331 3.64492 18.847 4.69812 19.98C5.7235 20.6998 6.97621 21.127 8.32172 21.127C11.8061 21.127 14.6456 18.2851 14.6456 14.7977Z"
+                fill="#006aff"
+              />
+            </svg>
+          </a>
+          <a href="">
+            <svg
+              width="32px"
+              height="32px"
+              viewBox="0 -4 48 48"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <title>Twitter-color</title>
+              <desc>Created with Sketch.</desc>
+              <defs></defs>
+              <g
+                id="Icons"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+              >
+                <g
+                  id="Color-"
+                  transform="translate(-300.000000, -164.000000)"
+                  fill="#00AAEC"
+                >
+                  <path
+                    d="M348,168.735283 C346.236309,169.538462 344.337383,170.081618 342.345483,170.324305 C344.379644,169.076201 345.940482,167.097147 346.675823,164.739617 C344.771263,165.895269 342.666667,166.736006 340.418384,167.18671 C338.626519,165.224991 336.065504,164 333.231203,164 C327.796443,164 323.387216,168.521488 323.387216,174.097508 C323.387216,174.88913 323.471738,175.657638 323.640782,176.397255 C315.456242,175.975442 308.201444,171.959552 303.341433,165.843265 C302.493397,167.339834 302.008804,169.076201 302.008804,170.925244 C302.008804,174.426869 303.747139,177.518238 306.389857,179.329722 C304.778306,179.280607 303.256911,178.821235 301.9271,178.070061 L301.9271,178.194294 C301.9271,183.08848 305.322064,187.17082 309.8299,188.095341 C309.004402,188.33225 308.133826,188.450704 307.235077,188.450704 C306.601162,188.450704 305.981335,188.390033 305.381229,188.271578 C306.634971,192.28169 310.269414,195.2026 314.580032,195.280607 C311.210424,197.99061 306.961789,199.605634 302.349709,199.605634 C301.555203,199.605634 300.769149,199.559408 300,199.466956 C304.358514,202.327194 309.53689,204 315.095615,204 C333.211481,204 343.114633,188.615385 343.114633,175.270495 C343.114633,174.831347 343.106181,174.392199 343.089276,173.961719 C345.013559,172.537378 346.684275,170.760563 348,168.735283"
+                    id="Twitter"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </a>
+        </div>
+        <p class="index__footer-socials-copyrights">
+          © Dekunle Consult
+          <span
+            ><svg
+              viewBox="0 0 271.2 290.1"
+              aria-hidden="true"
+              focusable="false"
+              role="img"
+              class=""
+            >
+              <title>Equal Housing Opportunity</title>
+              <g stroke="none">
+                <path
+                  d="M0 126.8V90.3l10.4-7L30 70l19.2-12.7 19.5-13.2 19.1-12.8 18.8-12.6L133.8.5a3.4 3.4 0 0 1 3.6 0l5.8 3.9 13.7 9.3q13.2 9 26.5 17.8l13.8 9.3 27.4 18.4 26.2 17.6 18.4 12.4a17.7 17.7 0 0 1 2 1.8v36h-17.6v107.8H252l-147-.3H19.8a16.2 16.2 0 0 1-2-.3V126.8zm224.4 71v-.7-89.8a1.8 1.8 0 0 0-.8-1.3L198 88.8l-41-27.5L136 47.5a1.2 1.2 0 0 0-1.6 0l-7.8 5.3-18.5 12.4L91 76.8 73.4 88.6l-25.2 16.9a1.9 1.9 0 0 0-1 1.8v90.5z"
+                ></path>
+                <path
+                  d="M89.1 181v-38.6h93.4V181zM88.9 97.8h93.3v38.5H89z"
+                ></path>
+                <path
+                  d="M21.4 261v-20.3h14.7v2.4h-12v6.2h11.3v2.4H24v7h12.5v2.3zM55.7 258.9a16.5 16.5 0 0 0 3.5 1.8l-.8 2A15.9 15.9 0 0 1 54 260a10 10 0 0 1-5 1.3 9.6 9.6 0 0 1-5-1.4 8.9 8.9 0 0 1-3.4-3.7 12 12 0 0 1-1.3-5.4 12.2 12.2 0 0 1 1.3-5.5 8.6 8.6 0 0 1 3.4-3.8 10 10 0 0 1 5-1.3 9.8 9.8 0 0 1 5.1 1.4 8.7 8.7 0 0 1 3.5 3.7 12.1 12.1 0 0 1 1.2 5.5 12.6 12.6 0 0 1-.8 4.5 9.5 9.5 0 0 1-2.3 3.5zm-6-3.5a10 10 0 0 1 4 2q2.3-2.2 2.3-6.5a10.3 10.3 0 0 0-.8-4.4 6.5 6.5 0 0 0-2.5-2.8 7 7 0 0 0-8.6 1q-2 2-2 6.2a8.6 8.6 0 0 0 2 6 6.5 6.5 0 0 0 5 2.2 6.9 6.9 0 0 0 2.7-.6 8.7 8.7 0 0 0-2.7-1.1zM75.7 240.7h2.7v11.7a14 14 0 0 1-.7 5 6 6 0 0 1-2.5 2.8 8.9 8.9 0 0 1-4.7 1.2 9.8 9.8 0 0 1-4.7-1 5.6 5.6 0 0 1-2.6-2.9 13.6 13.6 0 0 1-.8-5v-11.8h2.7v11.7a11.4 11.4 0 0 0 .5 4 3.7 3.7 0 0 0 1.7 1.9 5.9 5.9 0 0 0 3 .7q3 0 4.2-1.4t1.2-5.2zM80.7 261l7.8-20.3h2.9l8.3 20.3h-3l-2.4-6.1h-8.5l-2.3 6.1zm5.8-8.3h7l-2.2-5.6q-1-2.6-1.4-4.3a26 26 0 0 1-1.1 4zM101.7 261v-20.3h2.7v18h10v2.3zM124.6 261v-20.3h2.7v8.4h10.5v-8.4h2.7V261h-2.7v-9.6h-10.5v9.6zM144.2 251.1q0-5 2.7-7.9a9.2 9.2 0 0 1 7-2.9 9.7 9.7 0 0 1 5 1.4 8.8 8.8 0 0 1 3.5 3.7 12.2 12.2 0 0 1 1.2 5.5 12 12 0 0 1-1.2 5.5 8.5 8.5 0 0 1-3.6 3.7 10.1 10.1 0 0 1-5 1.3 9.6 9.6 0 0 1-5-1.4 9 9 0 0 1-3.5-3.8 11.5 11.5 0 0 1-1.1-5zm2.7 0a8.1 8.1 0 0 0 2 5.9 6.9 6.9 0 0 0 10 0 8.6 8.6 0 0 0 2-6.1 10.4 10.4 0 0 0-.9-4.4 6.4 6.4 0 0 0-2.5-2.8 6.7 6.7 0 0 0-3.6-1 6.9 6.9 0 0 0-4.9 2q-2 1.9-2 6.5zM180.4 240.7h2.7v11.7a14 14 0 0 1-.7 5 6 6 0 0 1-2.5 2.8 8.9 8.9 0 0 1-4.7 1.2 9.8 9.8 0 0 1-4.7-1 5.6 5.6 0 0 1-2.6-2.9 13.6 13.6 0 0 1-.8-5v-11.8h2.7v11.7a11.4 11.4 0 0 0 .5 4 3.7 3.7 0 0 0 1.7 1.9 5.9 5.9 0 0 0 3 .7q2.9 0 4.2-1.4t1.2-5.2zM186.7 254.5l2.5-.2a5.6 5.6 0 0 0 .9 2.5 4.6 4.6 0 0 0 2 1.6 7.7 7.7 0 0 0 3.1.6 7.5 7.5 0 0 0 2.7-.5 3.8 3.8 0 0 0 1.8-1.2 3 3 0 0 0 .6-1.8 2.6 2.6 0 0 0-.6-1.7 4.1 4.1 0 0 0-1.8-1.2 35.7 35.7 0 0 0-3.6-1 18.4 18.4 0 0 1-4-1.2 5.5 5.5 0 0 1-2.1-2 4.6 4.6 0 0 1-.7-2.4 5.2 5.2 0 0 1 .8-3 5.4 5.4 0 0 1 2.6-2 9.7 9.7 0 0 1 3.7-.6 10.2 10.2 0 0 1 4 .7 5.8 5.8 0 0 1 2.7 2.1 6.2 6.2 0 0 1 1 3.2l-2.6.2a4.2 4.2 0 0 0-1.4-2.9 5.5 5.5 0 0 0-3.6-1 5.7 5.7 0 0 0-3.5 1 2.7 2.7 0 0 0-1.2 2 2.3 2.3 0 0 0 .8 1.9q.8.7 4 1.4a26.7 26.7 0 0 1 4.6 1.3 6.2 6.2 0 0 1 2.6 2.1 5 5 0 0 1 .9 2.9 5.5 5.5 0 0 1-1 3 6.1 6.1 0 0 1-2.6 2.3 9.3 9.3 0 0 1-4 .8 11.7 11.7 0 0 1-4.6-.8 6.5 6.5 0 0 1-3-2.4 6.9 6.9 0 0 1-1-3.7zM207 261v-20.3h2.7V261zM214.4 261v-20.3h2.8l10.6 16v-16h2.6V261h-2.7L217 245v16zM244.4 253v-2.3h8.7v7.5a15.2 15.2 0 0 1-4.1 2.4 12.1 12.1 0 0 1-4.4.8 11.6 11.6 0 0 1-5.4-1.3 8.5 8.5 0 0 1-3.7-3.7 11.7 11.7 0 0 1-1.2-5.4 12.6 12.6 0 0 1 1.2-5.6 8.3 8.3 0 0 1 3.6-3.8 11.2 11.2 0 0 1 5.3-1.2 10.6 10.6 0 0 1 4 .7 6.6 6.6 0 0 1 2.8 2 8.8 8.8 0 0 1 1.6 3.3l-2.5.7a7.5 7.5 0 0 0-1.1-2.5 4.7 4.7 0 0 0-2-1.4 7.1 7.1 0 0 0-2.8-.5 8.3 8.3 0 0 0-3.1.5 6 6 0 0 0-2.2 1.5 7 7 0 0 0-1.3 2 10.6 10.6 0 0 0-.8 4.1 10 10 0 0 0 1 4.5 6 6 0 0 0 2.7 2.8 8.4 8.4 0 0 0 3.8.9 9 9 0 0 0 3.4-.7 8.8 8.8 0 0 0 2.5-1.5v-3.7z"
+                ></path>
+                <path
+                  d="M18.8 278.1q0-5.9 3.2-9.2a10.8 10.8 0 0 1 8.2-3.4 11.4 11.4 0 0 1 5.9 1.6 10.3 10.3 0 0 1 4 4.4 14.2 14.2 0 0 1 1.4 6.3 14 14 0 0 1-1.5 6.5 10 10 0 0 1-4 4.3 11.8 11.8 0 0 1-5.9 1.5 11.2 11.2 0 0 1-6-1.6 10.4 10.4 0 0 1-4-4.4 13.4 13.4 0 0 1-1.3-6zm3.2 0a9.5 9.5 0 0 0 2.3 6.8 7.6 7.6 0 0 0 5.8 2.5A7.6 7.6 0 0 0 36 285q2.3-2.5 2.3-7a12.2 12.2 0 0 0-1-5.1 7.5 7.5 0 0 0-2.9-3.4 7.8 7.8 0 0 0-4.2-1.2 8 8 0 0 0-5.8 2.3q-2.4 2.3-2.4 7.7zM45.6 289.7v-23.8h9a21.6 21.6 0 0 1 3.5.3 7.2 7.2 0 0 1 3 1 5.8 5.8 0 0 1 1.9 2.4 7.7 7.7 0 0 1-1.2 8.3q-2 2.1-7 2.1h-6.1v9.7zm3.1-12.5h6.1q3.1 0 4.4-1.1a4 4 0 0 0 1.3-3.2 4.3 4.3 0 0 0-.8-2.6 3.5 3.5 0 0 0-2-1.4 13.4 13.4 0 0 0-3-.2h-6zM67.7 289.7v-23.8h9a21.6 21.6 0 0 1 3.6.3 7.2 7.2 0 0 1 3 1 5.8 5.8 0 0 1 1.8 2.4 7.7 7.7 0 0 1-1.2 8.3q-2 2.1-7 2.1h-6v9.7zm3.1-12.5H77q3 0 4.3-1.1a4 4 0 0 0 1.3-3.2 4.3 4.3 0 0 0-.8-2.6 3.5 3.5 0 0 0-2-1.4 13.4 13.4 0 0 0-2.9-.2h-6zM88.9 278.1q0-5.9 3.2-9.2a10.8 10.8 0 0 1 8.2-3.4 11.4 11.4 0 0 1 5.9 1.6 10.3 10.3 0 0 1 4 4.4 14.2 14.2 0 0 1 1.4 6.3 14 14 0 0 1-1.4 6.5 10 10 0 0 1-4.2 4.3 11.8 11.8 0 0 1-5.7 1.5 11.2 11.2 0 0 1-6-1.6 10.4 10.4 0 0 1-4-4.4 13.4 13.4 0 0 1-1.4-6zm3.2 0a9.5 9.5 0 0 0 2.3 6.8 8 8 0 0 0 11.7 0q2.3-2.5 2.3-7a12.2 12.2 0 0 0-1-5.1 7.5 7.5 0 0 0-2.9-3.4 7.8 7.8 0 0 0-4.2-1.2 8 8 0 0 0-5.8 2.3q-2.4 2.3-2.4 7.7zM115.7 289.7v-23.8h10.6a14 14 0 0 1 4.8.7 5.3 5.3 0 0 1 2.6 2.2 6.7 6.7 0 0 1 1 3.6 6 6 0 0 1-1.6 4.3 8.3 8.3 0 0 1-5 2.2 8.1 8.1 0 0 1 1.8 1.2 16.4 16.4 0 0 1 2.6 3.1l4.2 6.5h-4l-3.1-5-2.3-3.2a7.1 7.1 0 0 0-1.6-1.6 4.7 4.7 0 0 0-1.4-.6 9.4 9.4 0 0 0-1.8-.2H119v10.6zm3.2-13.3h6.7a10.1 10.1 0 0 0 3.4-.4 3.6 3.6 0 0 0 1.8-1.5 3.9 3.9 0 0 0 .7-2 3.5 3.5 0 0 0-1.2-2.9 5.7 5.7 0 0 0-4-1H119zM145 289.7v-21h-7.7V266H156v2.8h-7.9v21zM175 266h3v13.7a16.2 16.2 0 0 1-.7 5.7 7 7 0 0 1-3 3.4 10.4 10.4 0 0 1-5.5 1.3 11.4 11.4 0 0 1-5.5-1.2 6.6 6.6 0 0 1-3-3.3 15.9 15.9 0 0 1-1-6V266h3.2v13.7a13.4 13.4 0 0 0 .6 4.6 4.4 4.4 0 0 0 2 2.3 6.9 6.9 0 0 0 3.4.8q3.5 0 5-1.6t1.4-6zM183.3 289.7v-23.8h3.2l12.5 18.7v-18.7h3v23.8h-3.2L186.3 271v18.7zM207.8 289.7v-23.8h3.2v23.8zM222.6 289.7v-21h-7.9V266h18.9v2.8h-7.9v21zM243.5 289.7v-10l-9.2-13.8h3.8l4.7 7.2 2.4 4 2.6-4.2 4.6-7h3.7l-9.5 13.7v10.1z"
+                ></path>
+              </g>
+            </svg>
+          </span>
+        </p>
+      </div>
+    </div>
+    <!-- Footer ends here -->
+  </body>
+</html>
